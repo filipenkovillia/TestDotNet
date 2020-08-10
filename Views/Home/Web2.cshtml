@@ -1,0 +1,26 @@
+﻿@model System.Data.DataTable
+@{
+    ViewBag.Title = "Second Address Book";
+}
+<h2>@ViewBag.Title.</h2>
+@{
+    int i = 0;
+    while (i < Model.Rows.Count)
+    {
+        <p>
+            User Name: @Model.Rows[i][0]
+            @{
+                int j = i;
+                while (j < Model.Rows.Count && String.Compare(Model.Rows[i][0].ToString(), Model.Rows[j][0].ToString()) == 0)
+                {
+                    <ul>Phone Number: @Model.Rows[j][1]</ul>
+                    <ul>Is Active: @Model.Rows[j][2]</ul>
+
+                    j++;
+                }
+                i = j;
+            }
+
+        </p>
+    }
+}
